@@ -1,7 +1,7 @@
 package org.firstinspires.ftc.teamcode.Pipelines;
 
-import static org.firstinspires.ftc.robotcore.external.BlocksOpModeCompanion.telemetry;
 
+import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.opencv.core.Core;
 import org.opencv.core.Mat;
 import org.opencv.core.Point;
@@ -11,6 +11,12 @@ import org.opencv.imgproc.Imgproc;
 import org.openftc.easyopencv.OpenCvPipeline;
 
 public class File extends OpenCvPipeline {
+
+    Telemetry telemetry;
+
+    public File(Telemetry telemetry) {
+        this.telemetry = telemetry;
+    }
 
     Mat mat = new Mat();
     Mat yellowmat = new Mat();
