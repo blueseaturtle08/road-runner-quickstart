@@ -35,8 +35,8 @@ public class File extends OpenCvPipeline {
                 new Point(180,110)
         );
         Rect RECT_RIGHT = new Rect(
-                new Point(220, 155),
-                new Point(270, 105)
+                new Point(220, 160),
+                new Point(270, 110)
         );
         Scalar color = new Scalar(64, 64, 64);
         Imgproc.rectangle(mat, RECT_LEFT, color, 2);
