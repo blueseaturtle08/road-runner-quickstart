@@ -9,10 +9,11 @@ import com.qualcomm.robotcore.hardware.DcMotorSimple;
 public class TankDrive extends LinearOpMode {
 
 
-    private DcMotor leftFrontDrive = null;
-    private DcMotor leftBackDrive = null;
-    private DcMotor rightFrontDrive = null;
-    private DcMotor rightBackDrive = null;
+    private DcMotor leftFrontDrive;
+    private DcMotor leftBackDrive;
+    private DcMotor rightFrontDrive;
+    private DcMotor rightBackDrive;
+
 
     @Override
     public void runOpMode() {
@@ -26,7 +27,6 @@ public class TankDrive extends LinearOpMode {
         rightBackDrive.setDirection(DcMotor.Direction.REVERSE);
 
         waitForStart();
-
         while (opModeIsActive()) {
             double x = -gamepad1.left_stick_y;
             double y = -gamepad1.right_stick_y;
