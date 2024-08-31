@@ -52,13 +52,13 @@ public class File extends OpenCvPipeline {
         double middleValue = Core.sumElems(center).val[0];
         double rightValue = Core.sumElems(right).val[0];
 
-        if (leftValue > middleValue || leftValue > rightValue) {
+        if (leftValue > middleValue && leftValue > rightValue) {
             telemetry.addData("Duck", "Left");
         }
-        if (middleValue > leftValue || middleValue > rightValue) {
+        if (middleValue > leftValue && middleValue > rightValue) {
             telemetry.addData("Duck", "Middle");
         }
-        if (rightValue > middleValue || rightValue > leftValue) {
+        if (rightValue > middleValue && rightValue > leftValue) {
             telemetry.addData("Duck", "Right");
         }
 
