@@ -24,35 +24,34 @@ public class File extends OpenCvPipeline {
     @Override
     public Mat processFrame(Mat input) {
         Imgproc.cvtColor(input, mat, Imgproc.COLOR_RGB2HSV);
-        Scalar yellowhighHSV = new Scalar(30, 255,255);
-        Scalar yellowlowHSV = new Scalar(20 ,100, 100);
+        Scalar yellowhighHSV = new Scalar(248, 200, 250);
+        Scalar yellowlowHSV = new Scalar(138, 34, 143);
         Rect RECT_LEFT = new Rect(
-                new Point(60, 160),
-                new Point(100,110)
+                new Point(180, 30),
+                new Point(240,100)
         );
         Rect RECT_MIDDLE = new Rect(
                 new Point(130, 160),
                 new Point(180,110)
         );
-        Rect RECT_RIGHT = new Rect(
+        /*Rect RECT_RIGHT = new Rect(
                 new Point(220, 160),
-                new Point(270, 110)
-        );
+               new Point(270, 110)
+        );*/
         Scalar color = new Scalar(64, 64, 64);
         Imgproc.rectangle(mat, RECT_LEFT, color, 2);
         Imgproc.rectangle(mat, RECT_MIDDLE, color, 2);
-        Imgproc.rectangle(mat, RECT_RIGHT, color, 2);
-
+        //Imgproc.rectangle(mat, RECT_RIGHT, color, 2);
         Core.inRange(mat, yellowlowHSV, yellowhighHSV, yellowmat);
         Mat left = yellowmat.submat(RECT_LEFT);
         Mat center = yellowmat.submat(RECT_MIDDLE);
-        Mat right = yellowmat.submat(RECT_RIGHT);
+        //Mat right = yellowmat.submat(RECT_RIGHT);
 
         double leftValue = Core.sumElems(left).val[0];
         double middleValue = Core.sumElems(center).val[0];
-        double rightValue = Core.sumElems(right).val[0];
+        //double rightValue = Core.sumElems(right).val[0];
 
-        if (leftValue > middleValue && leftValue > rightValue) {
+        /*if (leftValue > middleValue && leftValue > rightValue) {
             telemetry.addData("Duck", "Left");
         }
         if (middleValue > leftValue && middleValue > rightValue) {
@@ -60,11 +59,11 @@ public class File extends OpenCvPipeline {
         }
         if (rightValue > middleValue && rightValue > leftValue) {
             telemetry.addData("Duck", "Right");
-        }
+        }*/
 
         telemetry.addData("leftValue", leftValue);
         telemetry.addData("middleValue", middleValue);
-        telemetry.addData("rightValue", rightValue);
+        //telemetry.addData("rightValue", rightValue);
         telemetry.update();
         return mat;
     }
