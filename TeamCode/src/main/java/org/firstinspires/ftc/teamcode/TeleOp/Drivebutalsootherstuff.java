@@ -14,10 +14,10 @@ public class Drivebutalsootherstuff extends LinearOpMode {
 
     @Override
     public void runOpMode() {
-        DcMotor frontLeftDrive  = hardwareMap.get(DcMotor.class, "left_front_drive");
-        DcMotor backLeftDrive  = hardwareMap.get(DcMotor.class, "left_back_drive");
-        DcMotor frontRightDrive = hardwareMap.get(DcMotor.class, "right_front_drive");
-        DcMotor backRightDrive = hardwareMap.get(DcMotor.class, "right_back_drive");
+        DcMotor frontLeftDrive  = hardwareMap.get(DcMotor.class, "FLM");
+        DcMotor backLeftDrive  = hardwareMap.get(DcMotor.class, "BLM");
+        DcMotor frontRightDrive = hardwareMap.get(DcMotor.class, "FRM");
+        DcMotor backRightDrive = hardwareMap.get(DcMotor.class, "BRM");
 
         IMU imu = hardwareMap.get(IMU.class, "imu");
         IMU.Parameters parameters = new IMU.Parameters(new RevHubOrientationOnRobot(
@@ -27,16 +27,17 @@ public class Drivebutalsootherstuff extends LinearOpMode {
 
         frontLeftDrive.setDirection(DcMotor.Direction.FORWARD);
         backLeftDrive.setDirection(DcMotor.Direction.FORWARD);
-        frontRightDrive.setDirection(DcMotor.Direction.FORWARD);
-        backRightDrive.setDirection(DcMotor.Direction.FORWARD);
+        frontRightDrive.setDirection(DcMotor.Direction.REVERSE);
+        backRightDrive.setDirection(DcMotor.Direction.REVERSE);
         boolean buttonBPressed = false;
 
         waitForStart();
 
         while (opModeIsActive()) {
-            double y = -gamepad1.left_stick_y;
-            double x = gamepad1.left_stick_x;
-            if (gamepad1.options) {
+            double x = -gamepad1.left_stick_x/2;
+            double y = gamepad1.left_stick_y/2;
+            if (gamepad1
+                    .options) {
                 imu.resetYaw();
             }
             double heading = imu.getRobotYawPitchRollAngles().getYaw(AngleUnit.DEGREES);

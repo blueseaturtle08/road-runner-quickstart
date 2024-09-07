@@ -46,7 +46,6 @@ public class File extends OpenCvPipeline {
         Mat left = yellowmat.submat(RECT_LEFT);
         Mat center = yellowmat.submat(RECT_MIDDLE);
         //Mat right = yellowmat.submat(RECT_RIGHT);
-
         double leftValue = Core.sumElems(left).val[0];
         double middleValue = Core.sumElems(center).val[0];
         //double rightValue = Core.sumElems(right).val[0];
